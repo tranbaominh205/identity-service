@@ -1,4 +1,4 @@
-package com.tbm.idenity_service.request;
+package com.tbm.idenity_service.dto.request;
 
 import java.time.LocalDate;
 
