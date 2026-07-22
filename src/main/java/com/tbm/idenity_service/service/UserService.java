@@ -2,6 +2,8 @@ package com.tbm.idenity_service.service;
 
 import com.tbm.idenity_service.dto.request.UserUpdateRequest;
 import com.tbm.idenity_service.entity.User;
+import com.tbm.idenity_service.exception.AppException;
+import com.tbm.idenity_service.exception.ErrorCode;
 import com.tbm.idenity_service.repository.UserRepository;
 import com.tbm.idenity_service.dto.request.UserCreationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +17,9 @@ public class UserService {
     private UserRepository userRepository;
     public User createUser(UserCreationRequest request){
         User user = new User();
+
+        if(userRepository.existsByUsername(request.getUsername()))
+            throw new AppException(ErrorCode.USER_EXISTED);
         user.setUsername(request.getUsername());
         user.setPassword(request.getPassword());
         user.setFirstname(request.getFirstname());
