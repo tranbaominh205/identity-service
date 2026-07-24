@@ -2,6 +2,7 @@ package com.tbm.idenity_service.controller;
 
 import com.tbm.idenity_service.dto.request.ApiResponse;
 import com.tbm.idenity_service.dto.request.UserUpdateRequest;
+import com.tbm.idenity_service.dto.response.UserResponse;
 import com.tbm.idenity_service.entity.User;
 import com.tbm.idenity_service.dto.request.UserCreationRequest;
 import com.tbm.idenity_service.service.UserService;
@@ -30,12 +31,12 @@ public class UserController {
     }
 
     @GetMapping("/{userId}")
-    User getUser(@PathVariable("userId") String userId){
+    UserResponse getUser(@PathVariable("userId") String userId){
         return userService.getUser(userId);
     }
 
     @PutMapping("/{userId}")
-    User updateUser( @PathVariable String userId, @RequestBody UserUpdateRequest request){
+    UserResponse updateUser( @PathVariable String userId, @RequestBody UserUpdateRequest request){
         return userService.updateUser(userId,request);
     }
 
