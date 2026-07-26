@@ -6,9 +6,10 @@ public enum ErrorCode {
     UNCATEGORIZED_EXCEPTION(9999,"Uncategori Error"),
     INVALID_KEY(1000,"Invalid Key"),
     USERNAME_INVALID(1002,"Username must be at least 3 characters"),
+    UNAUTHENTICATED(1005,"Unauthenticated"),
     PASSWORD_INVALID(1003,"Password must be at least 8 characters")
+    ;
 
-            ;
     private int code;
     private String message;
 
