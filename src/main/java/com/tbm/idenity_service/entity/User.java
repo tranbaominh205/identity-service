@@ -1,11 +1,9 @@
 package com.tbm.idenity_service.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
+import com.tbm.idenity_service.enums.Role;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -25,6 +23,9 @@ public class User {
     String firstname;
     String lastname;
     LocalDate dob;
-    Set<String> roles;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @Enumerated(EnumType.STRING)
+    Set<Role> roles;
 
 }

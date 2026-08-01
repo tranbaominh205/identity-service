@@ -1,10 +1,8 @@
 package com.tbm.idenity_service.dto.response;
 
-import com.tbm.idenity_service.entity.Role;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
 import java.util.Set;
 
 @Data
@@ -12,11 +10,10 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
-public class UserResponse {
-     String id;
-     String username;
-     String firstname;
-     String lastname;
-     LocalDate dob;
-     Set<Role> roles;
+public class RoleResponse {
+    String name;
+    String description;
+
+    Set<PermissionResponse> permissions;
+
 }
