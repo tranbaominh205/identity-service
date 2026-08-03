@@ -7,6 +7,7 @@ import com.tbm.idenity_service.entity.User;
 import com.tbm.idenity_service.repository.UserRepository;
 import org.mapstruct.MapMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Component;
 
@@ -14,6 +15,8 @@ import org.springframework.stereotype.Component;
 public interface UserMapper {
     User toUser(UserCreationRequest request);
     UserResponse toUserResponse(User user);
+
+    @Mapping(target = "roles",ignore = true)
     void updateUser(@MappingTarget User user, UserUpdateRequest request);
 }
 
