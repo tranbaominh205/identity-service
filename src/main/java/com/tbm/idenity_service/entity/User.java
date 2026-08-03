@@ -3,7 +3,6 @@ package com.tbm.idenity_service.entity;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import com.tbm.idenity_service.enums.Role;
 
 import java.time.LocalDate;
 import java.util.Set;
@@ -24,8 +23,7 @@ public class User {
     String lastname;
     LocalDate dob;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @Enumerated(EnumType.STRING)
+    @ManyToMany
     Set<Role> roles;
 
 }
