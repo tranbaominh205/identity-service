@@ -10,10 +10,10 @@ public enum ErrorCode {
     USER_NOT_EXISTED(1004,"User Not Existed", HttpStatus.NOT_FOUND),
     UNCATEGORIZED_EXCEPTION(9999,"Uncategori Error", HttpStatus.INTERNAL_SERVER_ERROR),
     INVALID_KEY(1000,"Invalid Key", HttpStatus.BAD_REQUEST),
-    USERNAME_INVALID(1002,"Username must be at least 3 characters", HttpStatus.BAD_REQUEST),
+    USERNAME_INVALID(1002,"Username must be at least {min} characters", HttpStatus.BAD_REQUEST),
     UNAUTHENTICATED(1005,"Unauthenticated", HttpStatus.UNAUTHORIZED),
     UNAUTHORIZED(1007,"You do not have permission", HttpStatus.FORBIDDEN),
-    PASSWORD_INVALID(1003,"Password must be at least 8 characters", HttpStatus.BAD_REQUEST)
+    PASSWORD_INVALID(1003,"Password must be at least {min} characters", HttpStatus.BAD_REQUEST)
     ;
 
     private int code;
