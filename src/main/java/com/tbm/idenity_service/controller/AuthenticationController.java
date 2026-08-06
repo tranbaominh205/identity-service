@@ -1,10 +1,7 @@
 package com.tbm.idenity_service.controller;
 
 import com.nimbusds.jose.JOSEException;
-import com.tbm.idenity_service.dto.request.ApiResponse;
-import com.tbm.idenity_service.dto.request.AuthenticationRequest;
-import com.tbm.idenity_service.dto.request.IntrospectRequest;
-import com.tbm.idenity_service.dto.request.LogoutRequest;
+import com.tbm.idenity_service.dto.request.*;
 import com.tbm.idenity_service.dto.response.AuthenticationResponse;
 import com.tbm.idenity_service.dto.response.IntrospectResponse;
 import com.tbm.idenity_service.service.AuthenticationService;
@@ -43,6 +40,15 @@ public class AuthenticationController {
     ApiResponse<Void> logout(@RequestBody LogoutRequest request) throws ParseException, JOSEException {
        authenticationService.logout(request);
         return ApiResponse.<Void>builder()
+                .build();
+    }
+
+    @PostMapping("/refresh")
+    ApiResponse<AuthenticationResponse> authenticate(@RequestBody RefreshRequest request)
+            throws ParseException, JOSEException {
+        var result = authenticationService.refreshToken(request);
+        return ApiResponse.<AuthenticationResponse>builder()
+                .result(result)
                 .build();
     }
 }
