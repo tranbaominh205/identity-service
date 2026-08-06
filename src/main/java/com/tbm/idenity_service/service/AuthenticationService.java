@@ -8,6 +8,7 @@ import com.nimbusds.jwt.SignedJWT;
 import com.tbm.idenity_service.dto.request.AuthenticationRequest;
 import com.tbm.idenity_service.dto.request.IntrospectRequest;
 import com.tbm.idenity_service.dto.request.LogoutRequest;
+import com.tbm.idenity_service.dto.request.RefreshRequest;
 import com.tbm.idenity_service.dto.response.AuthenticationResponse;
 import com.tbm.idenity_service.dto.response.IntrospectResponse;
 import com.tbm.idenity_service.dto.response.UserResponse;
@@ -103,6 +104,32 @@ public class AuthenticationService {
             throw new AppException(ErrorCode.UNAUTHENTICATED);
 
         return signedJWT;
+
+    }
+
+    public AuthenticationResponse refreshToken(RefreshRequest request)
+            throws ParseException, JOSEException {
+        var signedJWT = verifiedToken(request.getToken());
+        String jit = signedJWT.getJWTClaimsSet().getJWTID();
+        Date expiryTime = signedJWT.getJWTClaimsSet().getIssueTime();
+
+        InvalidatedToken invalidatedToken = InvalidatedToken.builder()
+                .id(jit)
+                .expiryTime(expiryTime)
+                .build();
+
+        invalidatedTokenRepository.save(invalidatedToken);
+
+        var username = signedJWT.getJWTClaimsSet().getSubject();
+        var user = userRepository.findByUsername(username).orElseThrow(
+                () -> new AppException(ErrorCode.UNAUTHENTICATED));
+
+        var token = generateToken(user);
+
+        return AuthenticationResponse.builder()
+                .token(token)
+                .authenticated(true)
+                .build();
 
     }
 
