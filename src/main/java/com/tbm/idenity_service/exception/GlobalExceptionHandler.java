@@ -75,6 +75,6 @@ public class GlobalExceptionHandler {
     private String mapAttribute(String message, Map<String, Object> attributes) {
         String minValue = String.valueOf(attributes.get(MIN_ATTRIBUTE));
 
-        return message.replace("{"+ MIN_ATTRIBUTE + ")", minValue);
+        return message.replace("{"+ MIN_ATTRIBUTE + "}", minValue);
     }
 }
