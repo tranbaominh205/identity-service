@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.tbm</groupId>
-	<artifactId>idenity-service</artifactId>
+	<artifactId>identity-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name/>
 	<description/>
@@ -49,6 +49,11 @@
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-crypto</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
+			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>com.mysql</groupId>
@@ -162,6 +167,33 @@
 						<arg>-Amapstruct.defaultComponentModel=spring</arg>
 						<arg>-Amapstruct.verbose=true</arg>
 					</compilerArgs>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>report</id>
+						<phase>prepare-package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<exclude>com/tbm/identity_service/dto/**</exclude>
+						<exclude>com/tbm/identity_service/entity/**</exclude>
+						<exclude>com/tbm/identity_service/mapper/**</exclude>
+						<exclude>com/tbm/identity_service/configuration/**</exclude>
+					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
