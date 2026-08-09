@@ -1,9 +1,12 @@
-package com.tbm.idenity_service.controller;
+package com.tbm.identity_service.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.tbm.idenity_service.dto.request.UserCreationRequest;
-import com.tbm.idenity_service.dto.response.UserResponse;
+import com.tbm.identity_service.dto.request.UserCreationRequest;
+import com.tbm.identity_service.dto.response.UserResponse;
+import com.tbm.identity_service.dto.request.UserCreationRequest;
+
+import com.tbm.identity_service.dto.response.UserResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
