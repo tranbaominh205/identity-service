@@ -28,7 +28,7 @@ public class ApplicationInitConfig {
     @Bean
     @ConditionalOnProperty(
             prefix = "spring",
-            value = "datasource.driverClassname",
+            value = "datasource.driver-class-name",
             havingValue = "com.mysql.cj.jdbc.Driver")
     ApplicationRunner applicationRunner(UserRepository userRepository) {
         return args -> {
@@ -37,7 +37,6 @@ public class ApplicationInitConfig {
                 roles.add(Role.ADMIN.name());
                 User user = User.builder()
                         .username("admin")
-                        // .roles(roles)
                         .password(passwordEncoder.encode("admin"))
                         .build();
 
