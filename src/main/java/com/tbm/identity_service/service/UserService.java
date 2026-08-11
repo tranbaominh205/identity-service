@@ -45,10 +45,9 @@ public class UserService {
         // user.setRoles(roles);
         try {
             user = userRepository.save(user);
-        }catch (DataIntegrityViolationException exception){
+        } catch (DataIntegrityViolationException exception) {
             throw new AppException(ErrorCode.USER_EXISTED);
         }
-
 
         return userMapper.toUserResponse(userRepository.save(user));
     }
